@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tesla: #e31937;
+  --color-tesla-dark: #b8122b;
+  --color-tesla-glow: #ff2d4d;
+  --font-display: "Oswald", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #000;
+  /* Subtle red-tinted vignette + grid texture */
+  background-image:
+    radial-gradient(circle at 50% -10%, rgba(227, 25, 55, 0.18), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(227, 25, 55, 0.08), transparent 45%),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+  background-attachment: fixed;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a0a10;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-tesla-dark);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-tesla);
+  color: #fff;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 22px rgba(227, 25, 55, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(227, 25, 55, 0.6);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  94% { opacity: 0.55; }
+  96% { opacity: 1; }
+  97% { opacity: 0.7; }
+  98% { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-pulse-glow { animation: pulse-glow 2.8s ease-in-out infinite; }
+.animate-flicker { animation: flicker 4s linear infinite; }
+.animate-fade-up { animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+.text-balance { text-wrap: balance; }
+
+/* Red inset glow used on interactive cards */
+.card-glow {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+.card-glow:hover {
+  transform: translateY(-4px);
+  border-color: rgba(227, 25, 55, 0.6);
+  box-shadow:
+    0 18px 50px -12px rgba(227, 25, 55, 0.35),
+    inset 0 0 0 1px rgba(227, 25, 55, 0.25);
+}
